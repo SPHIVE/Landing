@@ -95,7 +95,18 @@ nav{display:flex;align-items:center;justify-content:space-between;
   box-shadow:0 8px 32px rgba(255,210,51,.45),0 0 60px rgba(255,210,51,.15)}
 
 /* ── HERO ── */
-.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;isolation:isolate; .hero::before{
+.hero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  isolation:isolate;
+  text-align:center;
+  padding:clamp(40px,8vh,80px) 0 clamp(30px,5vh,60px);
+  position:relative;
+}
+
+.hero::before{
   content:'';
   position:absolute;
   inset:0;
@@ -107,8 +118,6 @@ nav{display:flex;align-items:center;justify-content:space-between;
   z-index:-1;
   filter:blur(60px);
 }
-  text-align:center;padding:clamp(40px,8vh,80px) 0 clamp(30px,5vh,60px);
-  position:relative}
 
 /* Floating glass shapes */
 .shape{position:absolute;pointer-events:none;border-radius:50%;
@@ -381,7 +390,7 @@ footer{display:flex;align-items:center;justify-content:space-between;
       <span class="wordmark">Sapehive</span>
     </a>
     <div class="nav-pill"><span class="nav-pulse"></span>In Development</div>
-    <a href="mailto:hello@sapehive.com" class="nav-cta">
+    <a href="sapehiveofficial@gmail.com" class="nav-cta">
       Get in Touch
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
         <path d="M1 6H11M7.5 2.5L11 6L7.5 9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -418,7 +427,7 @@ footer{display:flex;align-items:center;justify-content:space-between;
 
     <!-- Countdown -->
     <div class="countdown">
-      <div class="cd-card"><div class="cd-num" id="cd-d">51</div><div class="cd-label">Days</div></div>
+      <div class="cd-card"><div class="cd-num" id="cd-d">00</div><div class="cd-label">Days</div></div>
       <div class="cd-sep">:</div>
       <div class="cd-card"><div class="cd-num" id="cd-h">00</div><div class="cd-label">Hours</div></div>
       <div class="cd-sep">:</div>
@@ -446,7 +455,7 @@ footer{display:flex;align-items:center;justify-content:space-between;
 
     <!-- CTA -->
     <div class="cta-row">
-      <a href="mailto:hello@sapehive.com" class="btn-primary">
+      <a href="mailto:sapehiveofficial@gmail.com" class="btn-primary">
         Contact Us
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path d="M1.5 7H12.5M8.5 3L12.5 7L8.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -505,39 +514,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;
   requestAnimationFrame(lerp)})();
 
 /* ═══════════════════════════════════════
-   LOGO CANVAS
-═══════════════════════════════════════ */
-(function(){
-  const lc = document.getElementById('logo-c');
-  const lx = lc.getContext('2d');
-  let t=0;
-  function hex(cx,cy,r,rot){
-    lx.beginPath();
-    for(let i=0;i<6;i++){
-      const a=rot+(i*Math.PI/3);
-      i===0?lx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a))
-           :lx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));
-    }lx.closePath();
-  }
-  function frame(){
-    lx.clearRect(0,0,40,40);
-    t+=.018;
-    /* outer ring */
-    hex(20,20,18,t);
-    lx.strokeStyle=`rgba(255,210,51,${.4+.2*Math.sin(t*2)})`;
-    lx.lineWidth=1;lx.setLineDash([5,3]);lx.stroke();lx.setLineDash([]);
-    /* inner filled */
-    hex(20,20,11,-t*.7);
-    lx.fillStyle=`rgba(255,210,51,${.1+.04*Math.sin(t)})`;
-    lx.strokeStyle=`rgba(255,210,51,${.55+.2*Math.sin(t)})`;
-    lx.lineWidth=1.2;lx.fill();lx.stroke();
-    /* center dot */
-    lx.beginPath();lx.arc(20,20,3,0,Math.PI*2);
-    lx.fillStyle='#FFD233';lx.fill();
-    requestAnimationFrame(frame);
-  }
-  frame();
-})();
+  
 
 /* ═══════════════════════════════════════
    MAIN BACKGROUND CANVAS
@@ -662,7 +639,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;
 /* ═══════════════════════════════════════
    COUNTDOWN
 ═══════════════════════════════════════ */
-const TARGET=new Date(Date.now()+74*24*60*60*1000);
+const TARGET = new Date("2026-07-21T00:00:00+05:30");
 function pad(n){return String(n).padStart(2,'0')}
 function tick(){
   const d=Math.max(0,TARGET-Date.now());
